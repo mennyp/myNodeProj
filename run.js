@@ -8,6 +8,11 @@ var driveUrl = 'https://docs.google.com/uc?export=download';
 
 app.get('/driveid/:driveid', function (req, res){
     //res.send(req.params)
+    var ip = (req.headers['x-forwarded-for'] ||
+     req.connection.remoteAddress ||
+     req.socket.remoteAddress ||
+     req.connection.socket.remoteAddress).split(",")[0];
+    console.log(ip + ' is connecting...');
     var id = req.params['driveid'];
     var options = {
         method: 'HEAD',
@@ -16,9 +21,9 @@ app.get('/driveid/:driveid', function (req, res){
             id: id
         }
     };
-    
+
     _request.get(options, function(err, response, body) {
-        var rawcookies = response.headers['set-cookie'];
+        var rawcookies = responseheaders['set-cookie'];
         if (rawcookies){
             var cookie = new Cookie(rawcookies[0]);
             console.log(cookie.value);
