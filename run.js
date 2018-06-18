@@ -17,12 +17,15 @@ app.use(logger('[:mydate] :method :url :status :res[content-length] - :remote-ad
 app.get('/driveid/:driveid', function (req, res){
     //res.send(req.params)
     require('log-timestamp');
-    var ip = (req.headers['x-forwarded-for'] ||
-     req.connection.remoteAddress ||
-     req.socket.remoteAddress ||
-     req.connection.socket.remoteAddress).split(",")[0];
-    console.log(ip + ' is connecting...');
+    // var ip = (req.headers['x-forwarded-for'] ||
+    //  req.connection.remoteAddress ||
+    //  req.socket.remoteAddress ||
+    //  req.connection.socket.remoteAddress).split(",")[0];
+    //console.log(ip + ' is connecting...');
     var id = req.params['driveid'];
+    if(id.includes('.')){
+        return;
+    }
     var options = {
         method: 'HEAD',
         uri: driveUrl,
