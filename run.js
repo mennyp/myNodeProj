@@ -23,7 +23,7 @@ app.get('/driveid/:driveid', function (req, res){
     };
 
     _request.get(options, function(err, response, body) {
-        var rawcookies = responseheaders['set-cookie'];
+        var rawcookies = response.headers['set-cookie'];
         if (rawcookies){
             var cookie = new Cookie(rawcookies[0]);
             console.log(cookie.value);
