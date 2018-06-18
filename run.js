@@ -12,7 +12,7 @@ logger.format('mydate', function() {
     var df = require('log-timestamp');
     return df(new Date(), 'HH:MM:ss.l');
 });
-app.use(logger('[:mydate] :method :url :status :res[content-length] - :remote-addr - :response-time ms'));
+app.use(logger(':method :url :status :res[content-length] - :remote-addr - :response-time ms'));
 
 app.get('/driveid/:driveid', function (req, res){
     //res.send(req.params)
