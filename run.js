@@ -16,16 +16,22 @@ app.get('/driveid/:driveid', function (req, res){
             id: id
         }
     };
+    
     _request.get(options, function(err, response, body) {
         var rawcookies = response.headers['set-cookie'];
-        var cookie = new Cookie(rawcookies[0]);
-        console.log(cookie.value);
-        //1fuUp1_K1SfUwponbHKJYJXxf_6vU4RoM
-        options.qs.confirm = cookie.value;
-        _request.head(options, function(err, response, body) {
-            console.log(response.request.uri.href);
-            res.redirect(response.request.uri.href);
-          });
+        if (rawcookies){
+            var cookie = new Cookie(rawcookies[0]);
+            console.log(cookie.value);
+            //1fuUp1_K1SfUwponbHKJYJXxf_6vU4RoM
+            options.qs.confirm = cookie.value;
+            _request.head(options, function(err, response, body) {
+                console.log(response.request.uri.href);
+                res.redirect(response.request.uri.href);
+            });
+        }
+        else{
+            console.log('raw cookies undefined. ')
+        }
     });
 });
 
