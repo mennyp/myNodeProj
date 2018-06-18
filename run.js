@@ -24,6 +24,7 @@ app.get('/driveid/:driveid', function (req, res){
     //console.log(ip + ' is connecting...');
     var id = req.params['driveid'];
     if(id.includes('.')){
+        res.send('bad request');
         return;
     }
     var options = {
@@ -47,6 +48,7 @@ app.get('/driveid/:driveid', function (req, res){
             });
         }
         else{
+            res.send('bad request');
             console.log('raw cookies undefined. ')
         }
     });
