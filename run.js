@@ -2,10 +2,26 @@ var express = require('express');
 var request = require('request');
 var Cookie = require('request-cookies').Cookie;
 var logger = require('morgan');
+//var youtubedl = require('youtube-dl');
 
 var _request = request.defaults({jar: true});
 var app = express();
 var driveUrl = 'https://docs.google.com/uc?export=download';
+// var tubeUrl = 'https://www.youtube.com/watch?v=nAlqo9Xy7Oo';
+// var options = ['--username=mpinhaso', '--password=!z123456', '--format=18'];
+// youtubedl.getInfo(tubeUrl, [], {maxBuffer: Infinity}, function(err, info) {
+//   if (err) throw err;
+ 
+//   console.log('id:', info.id);
+//   console.log('title:', info.title);
+//   console.log('url:', decodeURIComponent(info.url));
+//   console.log('thumbnail:', info.thumbnail);
+//   console.log('description:', info.description);
+//   console.log('filename:', info._filename);
+//   console.log('format id:', info.format_id);
+// });
+
+
 
 
 logger.format('mydate', function() {
